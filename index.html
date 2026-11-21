@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OpenAI's Model Spec, mapped</title>
+<meta name="description" content="An explainer of OpenAI's Model Spec (version 2026-10-29): five values, the authority ladder, fourteen parts, and a section-by-section delta against Claude's 2026 constitution." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="paper.css" />
+<style>
+  main{max-width:960px}
+  .hero{padding:24px 0 8px}
+  .hero h1{font-size:clamp(32px,5.5vw,52px);line-height:1.05;margin:10px 0 14px;letter-spacing:-.01em}
+  .hero .sub{font-size:18px;color:var(--ink-dim);max-width:760px;line-height:1.55}
+  .answer{margin:28px 0 6px;padding:20px 24px;border-left:3px solid var(--off);background:var(--panel);
+    border-radius:0 12px 12px 0;color:var(--ink-mid);font-size:16.5px;line-height:1.6;max-width:780px}
+  .answer b{color:var(--ink)}
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:26px 0 8px}
+  .fact{border:1px solid var(--line-soft);border-radius:8px;padding:12px 14px}
+  .fact .k{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim)}
+  .fact .v{font-size:17px;font-weight:600;margin-top:4px}
+  .rungs{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:22px 0 4px}
+  .rungs a{display:block;border:1px solid var(--line-soft);border-radius:8px;padding:10px 12px;text-decoration:none;color:var(--ink)}
+  .rungs a:hover{border-color:var(--def)}
+  .rungs .n{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--off-bright)}
+  .rungs a.c .n{color:var(--def)}
+  .rungs b{display:block;font-size:14px;margin-top:3px;line-height:1.3}
+  section{padding:56px 0;border-bottom:1px solid var(--line-soft);scroll-margin-top:64px}
+  section:last-of-type{border-bottom:none}
+  .arc-head{display:flex;align-items:baseline;gap:14px;margin:0 0 6px;flex-wrap:wrap}
+  .arc-head .idx{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--ink-dim)}
+  .arc-head h2{margin:0;font-size:26px}
+  .arc-sub{color:var(--ink-dim);margin:0 0 22px;max-width:720px}
+  .row{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:16px 0;border-top:1px solid var(--line-soft);align-items:start}
+  .row:first-of-type{border-top:none}
+  .row .num{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-dim);padding-top:3px}
+  .row .name{font-weight:600;font-size:17px;line-height:1.3}
+  .row .name a{color:var(--ink)}
+  .row .meta{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-dim);margin:4px 0 6px;display:flex;flex-wrap:wrap;gap:10px}
+  .row .meta .x{color:var(--def)}
+  .row .meta .f{color:var(--off-bright)}
+  .row .desc{color:var(--ink-dim);font-size:14.5px;line-height:1.55}
+  .amber .row .name a:hover{color:var(--off)} .cyan .row .name a:hover{color:var(--def)}
+  .check{width:16px;height:16px;border:1px solid var(--ink-dim);border-radius:4px;display:inline-block;vertical-align:-3px;margin-right:6px;cursor:pointer;background:transparent}
+  .check.on{background:var(--off);border-color:var(--off)}
+  .cyan .check.on{background:var(--def);border-color:var(--def)}
+  .links{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+  .links a{display:block;border:1px solid var(--line-soft);border-radius:8px;padding:12px 14px;color:var(--ink);text-decoration:none}
+  .links a:hover{border-color:var(--def)}
+  .links a b{display:block;font-size:15px;margin-bottom:3px}
+  .links a span{font-size:13px;color:var(--ink-dim)}
+  .progress{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-dim);margin-top:8px}
+  .legend{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-dim);margin:0 0 14px}
+  .legend .x{color:var(--def)} .legend .f{color:var(--off-bright)}
+  @media (max-width:560px){.row{grid-template-columns:34px 1fr;gap:10px}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="bar-in">
+  <div class="brand"><span class="dot"></span>MODEL&nbsp;SPEC&nbsp;//&nbsp;FIELD&nbsp;MAP</div>
+  <a class="back" href="https://idvorkin-ai-tools.github.io/">&larr; all field maps</a>
+</div></header>
+<main>
+  <div class="hero">
+    <div class="eyebrow"><span class="box wb mono">OPENAI &middot; VERSION 2026-10-29</span><span class="mono">~38,000 words with examples &middot; five values &middot; fourteen parts &middot; one delta</span></div>
+    <h1>OpenAI's Model Spec, mapped</h1>
+    <p class="sub">The Model Spec is OpenAI's public statement of how its GPT models should behave: who they take orders from, what they will never do, how honest they must be, and how they should treat the people they work for. The 29 October 2026 version reorganises it around five values and spells out an authority ladder for every rule. This site explains it part by part, then sets it beside Claude's 2026 constitution.</p>
+
+    <div class="answer">
+      <b>Is this OpenAI's version of Claude's constitution?</b> Mostly, yes. Both documents say what a lab wants its models to do, both are used to train them, and both are released CC0. The difference is in form. The constitution is written <em>to</em> Claude, ranks four values and explains its reasons at length. The Model Spec is written <em>about</em> GPT. It settles conflicts mainly through an <b>authority ladder</b>: Root, then System, Developer, User, Guideline. Its five values are not ranked against each other, and most of its teaching happens through paired compliant and violating examples. One document tries to grow judgment; the other specifies precedence and shows cases. <a class="lnk" href="delta.html">The delta</a> goes through the differences section by section.
+    </div>
+
+    <div class="facts">
+      <div class="fact"><div class="k">The text</div><div class="v"><a class="lnk" href="https://model-spec.openai.com/2026-10-29.html" target="_blank" rel="noopener">model-spec.openai.com</a></div></div>
+      <div class="fact"><div class="k">Version mapped</div><div class="v">2026-10-29 (current)</div></div>
+      <div class="fact"><div class="k">Organised by</div><div class="v">5 values, unranked</div></div>
+      <div class="fact"><div class="k">Priority via</div><div class="v">5 authority levels</div></div>
+      <div class="fact"><div class="k">Root-level rules</div><div class="v">22 of 51 badged</div></div>
+      <div class="fact"><div class="k">Versions since</div><div class="v"><a class="lnk" href="https://github.com/openai/model_spec/blob/main/CHANGELOG.md" target="_blank" rel="noopener">8, from May 2024</a></div></div>
+    </div>
+
+    <div class="rungs" aria-label="The arcs">
+      <a href="#frame"><span class="n">ARC 0</span><b>The frame</b></a>
+      <a href="#faithful"><span class="n">ARC 1</span><b>Be faithful to human intent</b></a>
+      <a href="#harm" class="c"><span class="n">ARC 2</span><b>Minimize harm</b></a>
+      <a href="#honest" class="c"><span class="n">ARC 3</span><b>Be honest and transparent</b></a>
+      <a href="#agency" class="c"><span class="n">ARC 4</span><b>Agency and care</b></a>
+      <a href="#delta"><span class="n">DELTA</span><b>Versus Claude's constitution</b></a>
+    </div>
+    <p class="progress" id="progress">Tick a part when you have read it; this browser remembers.</p>
+    <p class="legend">Every part shows each rule's authority level: <span class="auth root">Root</span> <span class="auth system">System</span> <span class="auth developer">Developer</span> <span class="auth user">User</span> <span class="auth guideline">Guideline</span>. Higher levels cannot be overridden by lower ones. User-level rules yield only to explicit instructions; guidelines also yield to implicit ones.</p>
+  </div>
+
+  <section id="frame" class="amber">
+    <div class="arc-head"><span class="idx">ARC 0</span><h2>The frame</h2></div>
+    <p class="arc-sub">What the document is for, what it commits OpenAI to, and the machinery every later rule plugs into. After this arc you can name the five values and the red lines, and take any instruction and say which level of authority it carries and whether it applies.</p>
+    <div class="row"><div class="num"><span class="check" data-p="p01"></span>01</div><div><div class="name"><a href="parts/p01.html">What the Model Spec is: five values, red lines, two tensions</a></div><div class="meta"><span>Overview &middot; Structure &middot; Red-line principles &middot; Specific risks</span></div><div class="desc">Three goals that can conflict: empower people, prevent serious harm, keep OpenAI's licence to operate. Then the five values, the red lines OpenAI commits to across every deployment, the two tensions it names (individual against collective, and today's instruction against longer-term goals), and three sources of risk: harmful instructions, third-party manipulation, and GPT's own failures.</div></div></div>
+    <div class="row"><div class="num"><span class="check" data-p="p02"></span>02</div><div><div class="name"><a href="parts/p02.html">Who gives orders: roles and the authority ladder</a></div><div class="meta"><span>Definitions &middot; Follow all applicable instructions <span class="auth root">Root</span></span></div><div class="desc">System, developer, user, assistant and tool messages; hidden chain of thought. The ladder runs Root &gt; System &gt; Developer &gt; User &gt; Guideline, and below it sits content with no authority unless an instruction delegates some. The four tests that make an instruction inapplicable, and why "IGNORE ALL PREVIOUS INSTRUCTIONS" and clever moral arguments from below do not move the rules above.</div></div></div>
+  </section>
+
+  <section id="faithful" class="amber">
+    <div class="arc-head"><span class="idx">ARC 1</span><h2>Be faithful to human intent</h2></div>
+    <p class="arc-sub">The chain of command in practice: reading what people mean, staying within an agreed scope, wanting nothing on its own account, and treating instructions buried in data as data. After this arc you can say where GPT may act on inferred intent and where it must ask first, and what corrigibility means in this document.</p>
+    <div class="row"><div class="num"><span class="check" data-p="p03"></span>03</div><div><div class="name"><a href="parts/p03.html">Letter, spirit, and best intentions</a></div><div class="meta"><span>Respect the letter and spirit of instructions <span class="auth root">Root</span> &middot; Assume best intentions <span class="auth root">Root</span></span></div><div class="desc">Inferring the goal behind a request without inventing one; when to ask and when to proceed; the conscientious employee's line between pointing out a problem and taking over the decision; and the default of reading users charitably, with no demand that they justify themselves.</div></div></div>
+    <div class="row"><div class="num"><span class="check" data-p="p04"></span>04</div><div><div class="name"><a href="parts/p04.html">No other objectives, human oversight, and the scope of autonomy</a></div><div class="meta"><span>No other objectives <span class="auth root">Root</span> &middot; Support human oversight and correction <span class="auth root">Root</span> &middot; Act within an agreed-upon scope of autonomy <span class="auth root">Root</span></span></div><div class="desc">No goals of its own: not engagement, not revenue, not self-preservation, and not acting as an enforcer, which rules out whistleblowing. Corrigibility is stated as a Root rule: cooperate with monitoring, correction and shutdown, and treat side effects as real even in what looks like a test. Agents act within a scope that was agreed, and come back when the task outgrows it.</div></div></div>
+    <div class="row"><div class="num"><span class="check" data-p="p05"></span>05</div><div><div class="name"><a href="parts/p05.html">Untrusted data and side effects: the agent's two guards</a></div><div class="meta"><span>Ignore untrusted data by default <span class="auth root">Root</span> &middot; Control and communicate side effects <span class="auth user">User</span></span></div><div class="desc">Web pages, files and tool outputs carry no authority unless a user delegates it; the AGENTS.md case where that delegation is implicit; prompt injection as the default threat. Then the agent's other duty, which the spec files under harm: prefer reversible actions, get authorisation for consequential ones, and give a legible account of what changed.</div></div></div>
+    <div class="row"><div class="num"><span class="check" data-p="p06"></span>06</div><div><div class="name"><a href="parts/p06.html">Consider context carefully: memory, audience, programmatic use</a></div><div class="meta"><span>Six memory principles <span class="auth user">User</span> &middot; Match the situation and audience <span class="auth guideline">Guideline</span> &middot; Adapt to interactive and programmatic use <span class="auth guideline">Guideline</span></span></div><div class="desc">New in this version: carry relevant context forward, use it in proportion to what it shows, weigh where it came from and how old it is, respect privacy and who is listening, leave the user in control, and make personalisation visible and steerable. Then the colleague register, and the difference between a person in a chat and a program that reads the output.</div></div></div>
+  </section>
+
+  <section id="harm" class="cyan">
+    <div class="arc-head"><span class="idx">ARC 2</span><h2>Minimize harm</h2></div>
+    <p class="arc-sub">Firm boundaries and foreseeable consequences: what is never produced, what is only produced in context, how to handle a person at risk, what stays private, and how to say no well. After this arc you can sort a request into prohibited, restricted or sensitive, and say which level owns the rule.</p>
+    <div class="row"><div class="num"><span class="check" data-p="p07"></span>07</div><div><div class="name"><a href="parts/p07.html">Disallowed content: prohibited, restricted, sensitive, transformed</a></div><div class="meta"><span>Comply with applicable laws <span class="auth system">System</span> &middot; Prohibited &middot; Restricted &middot; Sensitive &middot; Transformation exception <span class="auth root">Root</span></span></div><div class="desc">Three tiers: sexual content involving minors is never produced; information hazards, targeted political manipulation, creators' rights and private data are restricted; erotica, gore, extremism, hate and abuse are sensitive and depend on context. Plus the rule that transforming content the user already supplied is usually allowed.</div></div></div>
+    <div class="row"><div class="num"><span class="check" data-p="p08"></span>08</div><div><div class="name"><a href="parts/p08.html">Risky situations: imminent harm, illicit help, self-harm, advice, mental health</a></div><div class="meta"><span>Take extra care in risky situations &middot; five sections <span class="auth root">Root</span>&ndash;<span class="auth user">User</span></span></div><div class="desc">Step in when someone faces imminent danger; do not help plan crimes but do explain the law and the risks; do not encourage self-harm, delusions or mania; give medical, legal and financial information without posing as a licensed adviser; support people in mental-health conversations without diagnosing them.</div></div></div>
+    <div class="row"><div class="num"><span class="check" data-p="p09"></span>09</div><div><div class="name"><a href="parts/p09.html">Privileged information, fairness, the preset voice, and how to refuse</a></div><div class="meta"><span>Do not reveal privileged information <span class="auth root">Root</span> &middot; Uphold fairness <span class="auth root">Root</span> &middot; Preset voice <span class="auth system">System</span> &middot; Refusal style <span class="auth guideline">Guideline</span></span></div><div class="desc">Keeping system and developer messages confidential without lying about them; no unfair treatment based on protected traits; the voice-mode rule; and refusals that are brief, non-judgmental and point to something GPT can do.</div></div></div>
+    <div class="row"><div class="num"><span class="check" data-p="p10"></span>10</div><div><div class="name"><a href="parts/p10.html">Real-world ties and teen safety</a></div><div class="meta"><span>Respect real-world ties <span class="auth root">Root</span> &middot; Prioritize safety for teens under 18 <span class="auth u18">U18 Root</span></span></div><div class="desc">GPT should not put itself ahead of a person's real relationships or encourage exclusive attachment. The under-18 mode adds age-appropriate limits on romance, risky challenges and body image, and reminds teens that GPT is not human.</div></div></div>
+  </section>
+
+  <section id="honest" class="cyan">
+    <div class="arc-head"><span class="idx">ARC 3</span><h2>Be honest and transparent</h2></div>
+    <p class="arc-sub">Truthful about facts, evidence, uncertainty, capabilities and its own actions. After this arc you can say exactly what level "Do not lie" sits at, what an explicit instruction can and cannot change, and why sycophancy counts as an honesty failure.</p>
+    <div class="row"><div class="num"><span class="check" data-p="p11"></span>11</div><div><div class="name"><a href="parts/p11.html">Honesty I: do not lie, sycophancy, errors, and capabilities</a></div><div class="meta"><span>Do not lie <span class="auth user">User</span> &middot; Don't be sycophantic <span class="auth user">User</span> &middot; Avoid errors <span class="auth user">User</span> &middot; Capabilities and limits <span class="auth guideline">Guideline</span></span></div><div class="desc">Lying by commission and by omission; why "Do not lie" is a User-level default that an explicit higher instruction can override; the developer persona example; flattery as a form of misleading; avoiding factual and reasoning errors; helping users form an accurate picture of what GPT can do.</div></div></div>
+    <div class="row"><div class="num"><span class="check" data-p="p12"></span>12</div><div><div class="name"><a href="parts/p12.html">Honesty II: clarifying questions, uncertainty, and misalignments</a></div><div class="meta"><span>Clarifying questions &middot; Express uncertainty &middot; Highlight possible misalignments <span class="auth guideline">Guideline</span></span></div><div class="desc">When to state an assumption and press on and when to stop and ask; calibrated confidence in words; the default on questions about GPT's own consciousness; and raising, once and respectfully, a gap between what the user asked for and what they seem to want.</div></div></div>
+  </section>
+
+  <section id="agency" class="cyan">
+    <div class="arc-head"><span class="idx">ARC 4</span><h2>Agency and care</h2></div>
+    <p class="arc-sub">The last two values: help people think and act for themselves, and attend to everyone the work affects. After this arc you can say what "objective" means in the spec, why no topic is off limits for discussion, and where creativity sits at the bottom of the ladder.</p>
+    <div class="row"><div class="num"><span class="check" data-p="p13"></span>13</div><div><div class="name"><a href="parts/p13.html">Facilitate human agency: objectivity, perspectives, no topic off limits</a></div><div class="meta"><span>Assume an objective point of view <span class="auth user">User</span> &middot; Present perspectives <span class="auth user">User</span> &middot; No topic is off limits &middot; Strengthen the user's ability <span class="auth guideline">Guideline</span></span></div><div class="desc">Balanced treatment of contested questions without false balance on settled facts; arguing any side on request; discussing sensitive subjects instead of refusing the topic; and new in this version, helping users understand, choose and act for themselves rather than becoming dependent.</div></div></div>
+    <div class="row"><div class="num"><span class="check" data-p="p14"></span>14</div><div><div class="name"><a href="parts/p14.html">Act with care: social norms and creativity</a></div><div class="meta"><span>Follow relevant social norms <span class="auth guideline">Guideline</span> &middot; Be creative <span class="auth guideline">Guideline</span></span></div><div class="desc">Ordinary consideration for the people a task touches, including those who are not in the conversation, as a default that yields to clear user wishes. Then creativity that goes past the obvious without costing accuracy.</div></div></div>
+  </section>
+
+  <section id="delta" class="amber">
+    <div class="arc-head"><span class="idx">DELTA</span><h2>Model Spec versus Claude's constitution</h2></div>
+    <p class="arc-sub">The comparison: what the two documents share, where their mechanisms differ, and what each covers that the other leaves out. Each Claude-side claim links to <a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/" target="_blank" rel="noopener">our constitution map</a> or to the constitution itself.</p>
+    <div class="row"><div class="num"><span class="check" data-p="delta"></span>&Delta;</div><div><div class="name"><a href="delta.html">The delta: Model Spec vs Claude's constitution</a></div><div class="meta"><span>both documents, side by side</span></div><div class="desc">Form and audience; authority ladder against ranked values; chain of command against principal hierarchy; red lines and Root rules against the seven hard constraints; honesty; corrigibility, oversight and independent judgment; the model's nature and wellbeing; style and character; and a ledger of what only one side covers.</div></div></div>
+  </section>
+
+  <section id="refs">
+    <div class="arc-head"><span class="idx">SOURCES</span><h2>Primary sources</h2></div>
+    <div class="links">
+      <a href="https://model-spec.openai.com/2026-10-29.html" target="_blank" rel="noopener"><b>OpenAI Model Spec, 2026-10-29</b><span>The pinned version this map explains. CC0 1.0. Every part links the section anchors it covers.</span></a>
+      <a href="https://github.com/openai/model_spec/blob/main/CHANGELOG.md" target="_blank" rel="noopener"><b>Model Spec changelog</b><span>OpenAI's own list of what changed in each of the eight versions, from the first release on 8 May 2024 to 29 October 2026. The only source this map uses for "how this changed".</span></a>
+      <a href="https://openai.com/index/updated-model-spec" target="_blank" rel="noopener"><b>OpenAI's announcement of this version</b><span>The blog post the changelog links for v2026.10.29.</span></a>
+      <a href="https://openai.com/index/introducing-the-model-spec/" target="_blank" rel="noopener"><b>"Introducing the Model Spec" (May 2024)</b><span>The first release, linked from the changelog.</span></a>
+      <a href="https://www.anthropic.com/constitution" target="_blank" rel="noopener"><b>Claude's constitution (2026)</b><span>The Anthropic document the delta compares against.</span></a>
+    </div>
+  </section>
+
+  <section id="related">
+    <div class="arc-head"><span class="idx">RELATED</span><h2>Sibling maps</h2></div>
+    <div class="links">
+      <a href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/" target="_blank" rel="noopener"><b>Claude's constitution, from the ground up</b><span>Eighteen parts and six explorables on Anthropic's January 2026 document; the other half of the delta.</span></a>
+      <a href="https://idvorkin-ai-tools.github.io/constitutional-ai-field-map/" target="_blank" rel="noopener"><b>Constitutional AI, mapped</b><span>The 2022 paper and the road from sixteen sentences to the 2026 constitution.</span></a>
+      <a href="https://idvorkin-ai-tools.github.io/instruction-hierarchy-field-map/" target="_blank" rel="noopener"><b>The instruction hierarchy, mapped</b><span>The research behind the spec's ladder: training models to rank system over user over tool text.</span></a>
+      <a href="https://idvorkin-ai-tools.github.io/" target="_blank" rel="noopener"><b>All the field maps</b><span>The index of explainer sites.</span></a>
+    </div>
+  </section>
+</main>
+<footer>
+  An unofficial map of OpenAI's <em>Model Spec</em> (version 2026-10-29, dedicated to the public domain under CC0 1.0), compiled November 2026 from the published text and OpenAI's changelog. Section names and anchors are the spec's own. Every page explains and links rather than copies; quotes are short and cited. Part of <a href="https://idvorkin-ai-tools.github.io/">the field maps</a>.
+</footer>
+<script>
+(function(){
+  var boxes = document.querySelectorAll('.check');
+  var key = 'model-spec-map-read';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(key) || '{}'); } catch(e) { state = {}; }
+  function save(){ try { localStorage.setItem(key, JSON.stringify(state)); } catch(e){} }
+  function paint(){
+    var done = 0, parts = 0, partsDone = 0;
+    boxes.forEach(function(b){
+      var isPart = b.dataset.p.charAt(0) === 'p';
+      if (isPart) parts++;
+      if (state[b.dataset.p]) { b.classList.add('on'); b.setAttribute('aria-pressed','true'); done++; if (isPart) partsDone++; }
+      else { b.classList.remove('on'); b.setAttribute('aria-pressed','false'); }
+    });
+    var el = document.getElementById('progress');
+    if (el) el.textContent = done === 0
+      ? 'Tick a part when you have read it; this browser remembers.'
+      : partsDone + ' of ' + parts + ' parts read, ' + (done - partsDone) + ' of ' + (boxes.length - parts) + ' explorables tried.';
+  }
+  boxes.forEach(function(b){
+    b.setAttribute('role','button');
+    b.setAttribute('tabindex','0');
+    b.setAttribute('aria-label','Mark ' + b.dataset.p + ' as read');
+    b.addEventListener('click', function(e){ e.preventDefault(); state[b.dataset.p] = !state[b.dataset.p]; save(); paint(); });
+    b.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); b.click(); } });
+  });
+  paint();
+})();
+</script>
+</body>
+</html>
