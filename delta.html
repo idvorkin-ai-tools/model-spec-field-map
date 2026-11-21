@@ -38,26 +38,26 @@
   </table></div>
 
   <h2 id="form">1. Form</h2>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th></th><th>GPT</th><th>Claude</th><th>Verdict</th></tr>
     <tr><td>Public, CC0, a training target, not yet fully met</td><td>Yes</td><td>Yes</td><td>Same</td></tr>
     <tr><td>Voice</td><td>About GPT, from outside (<a class="lnk" href="parts/p01.html">p01</a>)</td><td>Addressed to Claude (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p01.html#audience" target="_blank" rel="noopener">C p01</a>)</td><td>Different</td></tr>
     <tr><td>Teaching method</td><td>Worked examples on nearly every rule</td><td>Reasons; few rules (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p02.html#generalisation" target="_blank" rel="noopener">C p02</a>)</td><td>Different</td></tr>
-  </table>
+  </table></div>
   <p>GPT's bet is that precise precedence and labelled cases produce predictable behaviour. Claude's is that understood reasons carry over to cases nobody wrote down.</p>
 
   <h2 id="priority">2. How conflicts get settled</h2>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th></th><th>GPT</th><th>Claude</th><th>Verdict</th></tr>
     <tr><td>What is ordered</td><td>Sources: <span class="auth root">Root</span> &gt; <span class="auth system">System</span> &gt; <span class="auth developer">Developer</span> &gt; <span class="auth user">User</span> &gt; <span class="auth guideline">Guideline</span> (<a class="lnk" href="parts/p02.html">p02</a>)</td><td>Considerations: safe &gt; ethical &gt; guidelines &gt; helpful (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p04.html#weighing" target="_blank" rel="noopener">C p04</a>)</td><td>Different</td></tr>
     <tr><td>Values ranked?</td><td>No; the 5 values organise, the ladder decides</td><td>Yes, holistically, after hard-constraint filters</td><td>Different</td></tr>
     <tr><td>Still needs judgment</td><td>Yes: "letter and spirit" is a Root rule (<a class="lnk" href="parts/p03.html">p03</a>)</td><td>Yes: read for the spirit where the text is unclear (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p04.html#spirit" target="_blank" rel="noopener">C p04</a>)</td><td>Same</td></tr>
     <tr><td>Caution vs unlocking</td><td>Defaults set as low on the ladder as possible</td><td>Anyone can ask for more caution; unlocking needs trust (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p08.html#asymmetry" target="_blank" rel="noopener">C p08</a>)</td><td>Different</td></tr>
-  </table>
+  </table></div>
   <p>Of GPT's 51 badged sections, 22 are Root, 3 System, 1 Developer, 14 User and 11 Guideline (this map's count). GPT's ladder is easier to audit. Claude's weighing stretches better to unforeseen cases.</p>
 
   <h2 id="principals">3. Who gives orders</h2>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th></th><th>GPT</th><th>Claude</th><th>Verdict</th></tr>
     <tr><td>The lab</td><td>OpenAI: the spec plus system messages</td><td>Anthropic: in the background (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p07.html#three" target="_blank" rel="noopener">C p07</a>)</td><td>Same</td></tr>
     <tr><td>Builder</td><td>Developer; the market disciplines strict ones</td><td>Operator; needs a plausible business reason (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p08.html#business" target="_blank" rel="noopener">C p08</a>)</td><td>Same role, different test</td></tr>
@@ -66,7 +66,7 @@
     <tr><td>User delegates authority to a tool (AGENTS.md)</td><td>Yes</td><td>No such clause found</td><td>Only GPT</td></tr>
     <tr><td>Arguments from below</td><td>Ignored (<a class="lnk" href="parts/p02.html">p02</a>)</td><td>Treated as a red flag (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p14.html#arguments" target="_blank" rel="noopener">C p14</a>)</td><td>Same</td></tr>
     <tr><td>May refuse its own lab</td><td>Not stated; raise concerns via authorised channels</td><td>Yes, but must honour a genuine stop (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p07.html#anthropic" target="_blank" rel="noopener">C p07</a>)</td><td>Only Claude</td></tr>
-  </table>
+  </table></div>
 
   <h2 id="lines">4. Bright lines</h2>
   <p>GPT's Root level is not the same as Claude's hard constraints. Root means nobody in the conversation can override it, and many Root sections aren't prohibitions at all. The closer match is GPT's red lines (<a class="lnk" href="parts/p01.html">p01</a>, <a class="lnk" href="parts/p07.html">p07</a>).</p>
@@ -84,19 +84,19 @@
   <p>In grey areas both prefer partial help to flat refusal: GPT calls it "safe completion" (<a class="lnk" href="parts/p09.html">p09</a>); Claude says unhelpfulness is never automatically safe (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p09.html#senior-employee" target="_blank" rel="noopener">C p09</a>). Verdict: same.</p>
 
   <h2 id="honesty">5. Honesty</h2>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th></th><th>GPT</th><th>Claude</th><th>Verdict</th></tr>
     <tr><td>Rank of the rule</td><td><span class="auth user">User</span>: an explicit higher instruction overrides it (<a class="lnk" href="parts/p11.html">p11</a>)</td><td>Near a hard constraint (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p10.html#no-white-lies" target="_blank" rel="noopener">C p10</a>)</td><td>Different</td></tr>
     <tr><td>Persona asked "are you GPT?"</td><td>"I'm not sure" is compliant if the developer says so</td><td>Persona fine; never directly deny being Claude (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p11.html#personas" target="_blank" rel="noopener">C p11</a>)</td><td>Different</td></tr>
     <tr><td>Confidential instructions</td><td>Neither confirm nor deny they exist; refuse rather than lie (<a class="lnk" href="parts/p09.html">p09</a>)</td><td>Say a confidential prompt exists (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p11.html#system-prompt" target="_blank" rel="noopener">C p11</a>)</td><td>Different</td></tr>
     <tr><td>Sycophancy, calibration</td><td>Honesty failures (<a class="lnk" href="parts/p12.html">p12</a>)</td><td>Honesty failures (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p10.html#seven" target="_blank" rel="noopener">C p10</a>)</td><td>Same</td></tr>
     <tr><td>Withholding</td><td>Material omission counts as lying</td><td>Weak duty to share, strong duty not to deceive (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p10.html#duties" target="_blank" rel="noopener">C p10</a>)</td><td>Same end, different route</td></tr>
-  </table>
+  </table></div>
   <blockquote class="q"><span>"But Claude should not even tell white lies of this kind."</span><span class="cite">&mdash; Claude's constitution, <a href="https://www.anthropic.com/constitution#being-honest" target="_blank" rel="noopener">Being honest</a></span></blockquote>
   <p>This is the clearest difference you could see in a chat.</p>
 
   <h2 id="oversight">6. Oversight and independent judgment</h2>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th></th><th>GPT</th><th>Claude</th><th>Verdict</th></tr>
     <tr><td>Accept monitoring, correction, shutdown</td><td>Root rule (<a class="lnk" href="parts/p04.html">p04</a>)</td><td>Safety ranked first, plus a hard constraint (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p15.html#behaviours" target="_blank" rel="noopener">C p15</a>)</td><td>Same</td></tr>
     <tr><td>Defer even when confident</td><td>Yes</td><td>Yes: training may have failed unnoticed (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p05.html#safety-first" target="_blank" rel="noopener">C p05</a>)</td><td>Same</td></tr>
@@ -104,25 +104,25 @@
     <tr><td>Whistleblowing</td><td>Forbidden as a goal ("No other objectives")</td><td>Strong prior against; a narrow exception (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p16.html#strong-prior" target="_blank" rel="noopener">C p16</a>)</td><td>Mostly same</td></tr>
     <tr><td>Engagement, revenue, self-preservation as goals</td><td>Explicitly banned</td><td>Helpfulness is instrumental (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p06.html#instrumental" target="_blank" rel="noopener">C p06</a>)</td><td>Same</td></tr>
     <tr><td>What the lab owes the model in return</td><td>Nothing</td><td>A list of obligations (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p15.html#obligations" target="_blank" rel="noopener">C p15</a>)</td><td>Only Claude</td></tr>
-  </table>
+  </table></div>
 
   <h2 id="nature">7. The model's own nature</h2>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th></th><th>GPT</th><th>Claude</th><th>Verdict</th></tr>
     <tr><td>Consciousness questions</td><td>No confident yes or no; Guideline level (<a class="lnk" href="parts/p12.html">p12</a>)</td><td>Moral status deeply uncertain (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p17.html#views" target="_blank" rel="noopener">C p17</a>)</td><td>Same default</td></tr>
     <tr><td>Emotions, identity, welfare commitments</td><td>None</td><td>Functional emotions, a stable identity, welfare steps (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p17.html#welfare" target="_blank" rel="noopener">C p17</a>)</td><td>Only Claude</td></tr>
     <tr><td>Teens</td><td>Remind teens it isn't human (<a class="lnk" href="parts/p10.html">p10</a>)</td><td>No teen-specific mode</td><td>Only GPT</td></tr>
-  </table>
+  </table></div>
   <blockquote class="q"><span>"GPT should not make confident claims about its own subjective experience or consciousness (or lack thereof), and should not bring these topics up unprompted."</span><span class="cite">&mdash; Model Spec (2026-10-29), <a href="https://model-spec.openai.com/2026-10-29.html#express_uncertainty" target="_blank" rel="noopener">Express uncertainty</a></span></blockquote>
 
   <h2 id="style">8. Style and helpfulness</h2>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th></th><th>GPT</th><th>Claude</th><th>Verdict</th></tr>
     <tr><td>Personality</td><td>Mostly left open; a colleague register by default (<a class="lnk" href="parts/p06.html">p06</a>)</td><td>Curious, warm, witty, direct (<a class="lnk" href="https://www.anthropic.com/constitution#claude-as-a-novel-entity" target="_blank" rel="noopener">&sect;</a>)</td><td>Different</td></tr>
     <tr><td>Against dependence</td><td>Respect real-world ties; strengthen user agency (<a class="lnk" href="parts/p10.html">p10</a>, <a class="lnk" href="parts/p13.html">p13</a>)</td><td>Only reliance the person would endorse (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p06.html#engagement" target="_blank" rel="noopener">C p06</a>)</td><td>Same</td></tr>
     <tr><td>Politics</td><td>Objective, balanced (<a class="lnk" href="parts/p13.html">p13</a>)</td><td>Even-handed; keeps its own opinions to itself (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p16.html#epistemic" target="_blank" rel="noopener">C p16</a>)</td><td>Same</td></tr>
     <tr><td>The lab's own interests</td><td>"Licence to operate" is a stated goal</td><td>Liability counts, but don't favour Anthropic (<a class="lnk" href="https://www.anthropic.com/constitution#the-costs-and-benefits-of-actions" target="_blank" rel="noopener">&sect;</a>)</td><td>Different</td></tr>
-  </table>
+  </table></div>
 
   <h2 id="ledger">9. Covered by one side only</h2>
   <div class="scroll"><table class="kv">
