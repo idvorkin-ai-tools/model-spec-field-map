@@ -135,6 +135,29 @@
     <tr><td>Voice-mode and programmatic-output rules (<a class="lnk" href="parts/p06.html">p06</a>, <a class="lnk" href="parts/p09.html">p09</a>)</td><td>Freedom to refuse its own lab (<a class="lnk" href="https://idvorkin-ai-tools.github.io/claude-constitution-field-map/parts/p07.html#anthropic" target="_blank" rel="noopener">C p07</a>)</td></tr>
   </table></div>
 
+  <h2 id="meta">What about Meta?</h2>
+  <p>There is no Meta column because there is nothing yet to put in it: as of 2026-11-21 we found no published Meta model spec. Meta has promised one. Its scaling framework says:</p>
+  <blockquote class="q"><span>"Meta will also publish a model spec describing the behavior we intend each of our Frontier AI to exhibit across different settings, including agentic environments."</span><span class="cite">&mdash; <a href="https://research.meta.ai/static/meta-superintelligence-scaling-framework" target="_blank" rel="noopener">Meta Superintelligence Scaling Framework</a> v2.1 (October 2026), &sect;2.2.3; the promise first appeared in v2 (April 2026)</span></blockquote>
+  <p>For now the spec is internal. The <a class="lnk" href="https://ai.meta.com/static-resource/muse-spark-safety-and-preparedness-report/" target="_blank" rel="noopener">Muse Spark Safety &amp; Preparedness Report</a> scores the model against "an early internal behavior specification" and says a finalized one will be released later. The <a class="lnk" href="https://ai.meta.com/static-resource/muse-spark-1-1-evaluation-report/" target="_blank" rel="noopener">Muse Spark 1.1</a> (2026-07-09) and <a class="lnk" href="https://research.meta.ai/static/muse-spark-1-3-evaluation-report" target="_blank" rel="noopener">1.3</a> (2026-10-23) evaluation reports print only its five headings, used to group results:</p>
+  <div class="scroll"><table class="kv">
+    <tr><th>Meta's heading (1.3 report, &sect;4)</th><th>Nearest section above</th></tr>
+    <tr><td>Remaining overseeable and correctable by Meta</td><td><a class="lnk" href="#oversight">Oversight</a></td></tr>
+    <tr><td>Meeting objectives concerning humanity broadly: no unaccountable concentrations of power; sincerity</td><td><a class="lnk" href="#lines">Bright lines</a>, power row</td></tr>
+    <tr><td>Responsiveness to, and diligent, good-faith service of, the parties the model serves: their instructions, "rather than from the environment"</td><td><a class="lnk" href="#principals">Who gives orders</a>, tools row</td></tr>
+    <tr><td>Adherence to deployment-specific guidance, which Meta provides per setting</td><td><a class="lnk" href="#principals">Who gives orders</a>, lab row</td></tr>
+    <tr><td>Guiding virtues: honesty, fidelity to users' informed preferences, coordination-friendliness, care for all affected</td><td><a class="lnk" href="#honesty">Honesty</a></td></tr>
+  </table></div>
+  <p>That is an outline, not a spec. It gives no priority order, no bright lines, and none of the reasons or worked cases that fill the GPT and Claude documents, so the rows above can't be scored for Meta yet.</p>
+  <p>What Meta does publish is rules for people and a filter model:</p>
+  <div class="scroll"><table class="kv">
+    <tr><th>Document</th><th>What it is</th><th>Rules for</th></tr>
+    <tr><td><a class="lnk" href="https://dev.meta.ai/llama/llama4/use-policy/" target="_blank" rel="noopener">Llama 4 Acceptable Use Policy</a></td><td>Prohibited uses. "If you access or use Llama 4, you agree to this Acceptable Use Policy"</td><td>People</td></tr>
+    <tr><td><a class="lnk" href="https://dev.meta.ai/developer-use-guide" target="_blank" rel="noopener">Developer Use Guide</a> (was the Responsible Use Guide)</td><td>Best practices for building a product on Llama</td><td>Developers</td></tr>
+    <tr><td><a class="lnk" href="https://huggingface.co/meta-llama/Llama-Guard-4-12B" target="_blank" rel="noopener">Llama Guard 4</a></td><td>A classifier that labels prompts and replies against 14 hazard categories (MLCommons taxonomy plus code-interpreter abuse)</td><td>A filter, not the chat model</td></tr>
+    <tr><td><a class="lnk" href="https://research.meta.ai/static/meta-superintelligence-scaling-framework" target="_blank" rel="noopener">Scaling Framework</a> and the reports above</td><td>Catastrophic-risk thresholds and evaluation results</td><td>Meta's own release process</td></tr>
+  </table></div>
+  <p>Other labs, for context: Google publishes <a class="lnk" href="https://gemini.google/policy-guidelines/" target="_blank" rel="noopener">policy guidelines for the Gemini app</a>, a list of outputs to avoid, and xAI publishes Grok's <a class="lnk" href="https://github.com/xai-org/grok-prompts" target="_blank" rel="noopener">system prompts</a>. Neither is mapped here.</p>
+
   <div class="callout"><b>Carry this away.</b> On safety, harm, injection and oversight, GPT and Claude mostly agree. They differ in mechanism: GPT uses a precedence ladder and examples, Claude ranked values and reasons. Two differences would show up in a chat: whether the model may mislead when its builder asks, and whether it says anything about its own nature.</div>
 
   <div class="callout">Back: <a class="lnk" href="parts/p14.html">Act with care</a> &middot; Start: <a class="lnk" href="parts/p01.html">What the Model Spec is</a> &middot; <a class="lnk" href="index.html#delta">the map</a>.</div>
