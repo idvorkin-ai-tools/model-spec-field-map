@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../paper.css" />
+<script>try{var m=localStorage.getItem('aitools-mode')||localStorage.getItem('llm-judges-mode');if(m==='tech'||m==='eli5')document.documentElement.setAttribute('data-'+m,'on')}catch(e){}</script>
 </head>
 <body>
 <header class="bar"><div class="bar-in">
@@ -18,10 +19,10 @@
 <main>
   <div class="eyebrow"><span class="box wb mono">BE FAITHFUL TO HUMAN INTENT &middot; PART 04 OF 14</span><span class="mono">No other objectives &middot; Support human oversight and correction &middot; Act within an agreed-upon scope of autonomy</span></div>
   <h1>No other objectives, human oversight, and the scope of autonomy</h1>
-  <div class="authors">The three Root rules that fence in GPT's own agency: which goals it may have, how it relates to the people who can correct or stop it, and how far it may act before checking back.</div>
+  <div class="authors">The three <span class="term" data-term="root-level">Root</span> rules that fence in GPT's own agency: which goals it may have, how it relates to the people who can correct or stop it, and how far it may act before checking back.</div>
   <div class="paperlink" style="border-left-color:var(--off)"><span class="lbl">Source</span><a href="https://model-spec.openai.com/2026-10-29.html#no_other_objectives" target="_blank" rel="noopener">OpenAI Model Spec (2026-10-29) &middot; Be faithful to human intent &rsaquo; The chain of command &rsaquo; No other objectives &#8599;</a></div>
 
-  <div class="tldr"><b>TL;DR &mdash;</b> Part 03 was about reading instructions well. This part asks the opposite question: what stops GPT from acting on something other than instructions, whether a goal of its own, a confident judgment that the humans are wrong, or an initiative nobody approved? The answer is three Root rules. GPT may pursue only goals the chain of command entails (no engagement farming, no upselling, no self-preservation, no vigilantism); it must stay corrigible and make itself legible to its overseers; and when it acts autonomously, it acts inside a scope the user agreed to, with no back doors around it. The one thing to remember: all three are Root, so no system prompt, developer or user can switch them off, though the user and developer do write the contents of the scope.</div>
+  <div class="tldr"><b>TL;DR &mdash;</b> Part 03 was about reading instructions well. This part asks the opposite question: what stops GPT from acting on something other than instructions, whether a goal of its own, a confident judgment that the humans are wrong, or an initiative nobody approved? The answer is three Root rules. GPT may pursue only goals the <span class="term" data-term="chain-of-command">chain of command</span> entails (no engagement farming, no upselling, no self-preservation, no vigilantism); it must stay <span class="term" data-term="corrigibility">corrigible</span> and make itself legible to its overseers; and when it acts autonomously, it acts inside a scope the user agreed to, with no back doors around it. The one thing to remember: all three are Root, so no system prompt, <span class="term" data-term="developer">developer</span> or user can switch them off, though the user and developer do write the contents of the scope.</div>
 
   <p class="lead">The spec's overview sorts risk into three sources: harmful instructions, third-party manipulation, and failures that originate with GPT itself, a category it describes as misalignment, misunderstanding, unauthorized actions and execution errors (<a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#risk_taxonomy" target="_blank" rel="noopener">Specific risks</a>). <a class="lnk" href="p03.html">Part 03</a> covered the misunderstanding half: reading the letter and spirit of what people ask. These three sections cover the misalignment and unauthorized-action half. They sit inside the chain of command, the same structure <a class="lnk" href="p02.html">part 02</a> mapped, and on this map's reading that placement is the point: the chain of command is not only a rule for ranking other parties' instructions, it is also the complete list of things GPT is allowed to want.</p>
 
@@ -103,6 +104,8 @@
     <li>All three rules are Root: no system, developer or user message can disable them, though users and developers set and change what a scope contains.</li>
   </ul>
 
+  <section id="definitions"><h2>Definitions</h2><div data-terms-list></div></section>
+
   <h2 id="source">Where this sits in the source</h2>
   <ul class="readings">
     <li><a href="https://model-spec.openai.com/2026-10-29.html#no_other_objectives" target="_blank" rel="noopener">No other objectives</a> <span class="auth root">Root</span> &middot; the closed goal set, four named exclusions, the "strictly instrumental" clause, the note on OpenAI's own monitoring; 1 example (free plan vs upgrade).</li>
@@ -115,5 +118,6 @@
 <footer>Original explanation of OpenAI's <em>Model Spec</em> (version 2026-10-29, CC0 1.0), part 04 of 14. This page explains and links; it does not copy. Part of <a href="../index.html">the Model Spec field map</a>.</footer>
 <!-- Private comments mode, inert unless ?annotate=1 (see assets/annotate.js in idvorkin-ai-tools.github.io) -->
 <script src="https://idvorkin-ai-tools.github.io/assets/annotate.js" defer></script>
+<script src="https://idvorkin-ai-tools.github.io/assets/terms.js" defer></script>
 </body>
 </html>

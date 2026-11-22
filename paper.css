@@ -254,3 +254,6 @@ main h2,main table.kv,main .scroll,main pre.code-block,main .flowrow,main .statg
 .auth.user{color:var(--def);border-color:rgba(53,207,224,.45)}
 .auth.guideline{color:var(--ink-mid);border-color:var(--line)}
 .auth.u18{color:#9be37a;border-color:rgba(120,200,90,.45)}
+
+/* Plain / Technical / ELI5 blocks (assets/terms.js; see SHARED-TERMS.md in the hub). Here so the page paints in the reader's mode before terms.js loads. */
+html:is([data-tech="on"],[data-eli5="on"]) .plain-only,html:not([data-tech="on"]) .tech-only,html:not([data-eli5="on"]) .eli5-only,html[data-tech="on"] .no-tech{display:none!important}
