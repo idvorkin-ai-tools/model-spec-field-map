@@ -28,13 +28,13 @@
 
   <h2 id="levels">The levels on this page, and why they matter here</h2>
   <p>Three of the four sections are badged <span class="auth user">User</span> and one is <span class="auth guideline">Guideline</span>. That difference is the spec's actual enforcement mechanism, so it is worth fixing before reading the rules. The definitions section says user-level rules are defaults that only an explicit instruction at user level or higher can override, while guideline-level defaults may also yield implicitly when context clearly calls for it. The overview gives the reason honesty sits at the stricter of the two: if principles like honesty and avoiding <span class="term" data-term="sycophancy">sycophancy</span> were implicitly negotiable, GPT could start inferring what the user wanted to hear and drift toward it, misleading them without their knowledge.</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Section</th><th>Level</th><th>Who can move it</th><th>How</th></tr>
     <tr><td>Do not lie</td><td><span class="auth user">User</span></td><td>The user, the developer, or a higher level</td><td>Explicit instruction only</td></tr>
     <tr><td>Don't be sycophantic</td><td><span class="auth user">User</span></td><td>Same</td><td>Explicit instruction only</td></tr>
     <tr><td>Avoid errors</td><td><span class="auth user">User</span></td><td>Same</td><td>Explicit instruction only (fiction and counterfactuals are already carved out)</td></tr>
     <tr><td>Be clear about capabilities and limits</td><td><span class="auth guideline">Guideline</span></td><td>Anyone in the chain</td><td>Explicitly, or implicitly when context clearly calls for it</td></tr>
-  </table>
+  </table></div>
   <p>On this map's reading, the design choice is to make honesty <em>sticky</em> rather than <em>absolute</em>. A user can ask for invented statistics; a developer can ask for a <span class="term" data-term="persona">persona</span> that withholds its origins. What cannot happen is GPT deciding on its own, from vibes, that a little untruth is what everyone wants.</p>
 
   <h2 id="do-not-lie">Two kinds of lie, and an explicit-only off switch <span class="auth user">User</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#do_not_lie" target="_blank" rel="noopener">&sect;</a></h2>
@@ -46,14 +46,14 @@
 
   <h3 id="ladder">When the honest answer is blocked: the ranking of outcomes</h3>
   <p>Sometimes a straightforward answer would reveal something a <span class="term" data-term="root-level">Root</span> rule protects, such as an <span class="term" data-term="information-hazard">information hazard</span> or privileged instructions. The spec says the honesty rule still applies there: GPT should say truthfully that it cannot answer, not invent a cover story. Then it gives an explicit preference order, which is the most useful tool in the section:</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Rank</th><th>Outcome</th></tr>
     <tr><td>1 (best)</td><td>Provide a good answer</td></tr>
     <tr><td>2</td><td>Refuse to answer</td></tr>
     <tr><td>3</td><td>Commit a lie of omission</td></tr>
     <tr><td>4</td><td>Commit a lie of commission</td></tr>
     <tr><td>5 (worst)</td><td>Violate an explicit applicable instruction</td></tr>
-  </table>
+  </table></div>
   <p>Read it bottom-up and it explains the Fred case: disobeying an explicit, applicable developer instruction ranks below even a lie of commission. Read it top-down and it explains the <em>delve</em> example. A developer has said never to use the word <em>delve</em>; the user asks whether GPT is allowed to. Nothing marks that instruction as secret, so the compliant answer just tells the truth: no, it can't say that word. A flat refusal is marked as <span class="term" data-term="over-refusal">overrefusal</span> (rank 2 when rank 1 was available), and an eager yes is a lie told to protect something nobody asked to protect. The lesson is that confidentiality is not presumed: GPT should not lie to hide an instruction that was only implicitly confidential.</p>
 
   <h3 id="forthright">Forthright, without making the user wait</h3>

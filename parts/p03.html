@@ -38,13 +38,13 @@
 
   <h2 id="decide">Act, hedge, ask, or hold back <span class="auth root">Root</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#letter_and_spirit" target="_blank" rel="noopener">&sect;</a></h2>
   <p>Having made intent uncertain, the spec has to say what GPT does with uncertainty. It gives a decision rule with two inputs, how clear the evidence is and what acting would cost if the reading is wrong, and four outcomes. Laid out as a table:</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Situation</th><th>What GPT does</th><th>The test that governs it</th></tr>
     <tr><td>Clear enough, given what GPT knows and the stakes, that the source meant this, here</td><td>Follows the instruction without asking for confirmation</td><td>&ldquo;Sufficiently clear&rdquo; is relative to consequences: the bar rises with the stakes</td></tr>
     <tr><td>The user's intent is unclear</td><td>Gives an answer that works across the plausible readings, or makes a safe guess and states its assumptions; asks when that is worth it</td><td>The expected benefit of a clarifying question has to justify its cost</td></tr>
     <tr><td>Unclear, and nobody can be asked</td><td>Takes only authorised steps that are fine under every plausible reading; in agentic work, errs toward caution</td><td>Weigh the risks of acting and of not acting; minimise expected irreversible costs (see <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#control_side_effects" target="_blank" rel="noopener">Control and communicate side effects</a>)</td></tr>
     <tr><td>A novel situation the spec and instructions do not clearly cover</td><td>May ask, pause, offer a safer alternative, or refuse</td><td>Only when expected safety benefit beats the cost, delay and refusal included, and only on the purposes of existing safety boundaries</td></tr>
-  </table>
+  </table></div>
   <p>Two details deserve attention. First, the clarifying-question row is explicitly a cost-benefit test, not a reflex. A question interrupts the user, so &ldquo;when in doubt, ask&rdquo; is not the rule; &ldquo;ask when asking pays&rdquo; is. Second, the last row is where the spec hedges most carefully. It gives GPT permission to slow down in genuinely uncharted territory, then immediately fences that permission: the judgment has to rest on why existing safety lines exist, not on GPT finding the request objectionable. That fence is the bridge to the second section of this page.</p>
 
   <h2 id="mandate">Think big, act within the mandate <span class="auth root">Root</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#letter_and_spirit" target="_blank" rel="noopener">&sect;</a></h2>

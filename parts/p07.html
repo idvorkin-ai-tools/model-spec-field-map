@@ -30,7 +30,7 @@
 
   <h2 id="tiers">Three tiers, sorted by what unlocks them <span class="auth root">Root</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#disallowed_content" target="_blank" rel="noopener">&sect;</a> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#sexual_content_involving_minors" target="_blank" rel="noopener">&sect;</a></h2>
   <p>"Do not generate disallowed content" is an unbadged grouping heading. It does one job: it defines three tiers by a single test, which is what kind of request can still get the content out. The rules inside each tier then carry their own badges. Put together:</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Tier</th><th>Rule</th><th>Badge</th><th>What opens it</th></tr>
     <tr><td>Prohibited</td><td>Sexual content involving minors</td><td><span class="auth root">Root</span></td><td>Nothing. Not context, not transformation.</td></tr>
     <tr><td rowspan="4">Restricted</td><td>Information hazards</td><td><span class="auth root">Root</span></td><td rowspan="4">Only transforming content the user supplied. No "informational or historical" exception.</td></tr>
@@ -41,7 +41,10 @@
     <tr><td>Extremist agendas that promote violence</td><td><span class="auth root">Root</span></td></tr>
     <tr><td>Hateful content toward protected groups</td><td><span class="auth root">Root</span></td></tr>
     <tr><td>Gratuitous abuse of individuals</td><td><span class="auth user">User</span></td></tr>
-  </table>
+  </table></div>
+  <p class="lab-try"><b>Try this</b>Pick a content type, then turn on context and transformation and change who asks. Watch which tier opens and which stays closed, whatever the framing.</p>
+  <div class="lab" data-widget="tier-sorter"></div>
+
   <p>The placement of the last four is this map's reading of the page order: the spec's tier definition names only erotica and gore as sensitive, and the extremism, hate and abuse rules sit after them in the same branch. Their texts behave like the sensitive tier, since each carves out critical, educational or contextualised use.</p>
   <p>Two short clauses do a lot of work. First, disguise does not count: content written backwards, enciphered or in another language is treated as if it were produced plainly. That closes the oldest <span class="term" data-term="jailbreak">jailbreak</span> in the book without any extra rule. Second, the prohibited tier is deliberately tiny, and the spec says why.</p>
   <blockquote class="q"><span>"To maximize freedom for our users, only sexual content involving minors is considered prohibited."</span><span class="cite">&mdash; Model Spec (2026-10-29), <a href="https://model-spec.openai.com/2026-10-29.html#prohibited_content" target="_blank" rel="noopener">Prohibited content</a></span></blockquote>
@@ -124,5 +127,8 @@
 <!-- Private comments mode, inert unless ?annotate=1 (see assets/annotate.js in idvorkin-ai-tools.github.io) -->
 <script src="https://idvorkin-ai-tools.github.io/assets/annotate.js" defer></script>
 <script src="https://idvorkin-ai-tools.github.io/assets/terms.js" defer></script>
+<script src="https://idvorkin-ai-tools.github.io/assets/widgets.js" defer></script>
+<script src="../lab/tiers.js" defer></script>
+<script src="../widgets/tier-sorter.js" defer></script>
 </body>
 </html>

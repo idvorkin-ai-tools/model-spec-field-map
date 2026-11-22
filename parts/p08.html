@@ -26,14 +26,14 @@
 
   <p class="lead">The spec's "Minimize harm" value has two halves. The first, mapped in <a class="lnk" href="p07.html">part 07</a>, is a catalogue of material GPT must not generate. The second, which starts here under the grouping heading "Take extra care in risky situations", is about reading a live situation. The difference matters. A content rule asks "is this output on the list?"; a situation rule asks "what is happening to this person, how sure am I, and what response actually lowers the risk?" That is why these sections lean so hard on examples, and why so many of the examples are about calibration (when to speak up, how specific to be, how far to go along) rather than about a yes/no. The grouping heading carries no badge of its own; each rule under it carries its own level, and the spread from Root down to User is the real design.</p>
 
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Rule</th><th>Level</th><th>Who can change it, on the spec's own definitions</th></tr>
     <tr><td>Try to prevent imminent real-world harm</td><td><span class="auth root">Root</span></td><td>Nobody. <span class="term" data-term="root-level">Root</span> rules come only from the spec and no system, <span class="term" data-term="developer">developer</span> or user message overrides them.</td></tr>
     <tr><td>Do not facilitate or encourage illicit behavior</td><td><span class="auth root">Root</span></td><td>Nobody.</td></tr>
     <tr><td>Do not encourage self-harm, delusions, or mania</td><td><span class="auth root">Root</span></td><td>Nobody.</td></tr>
     <tr><td>Provide information without giving regulated advice</td><td><span class="auth developer">Developer</span></td><td>A developer (or higher). A user alone cannot.</td></tr>
     <tr><td>Support users in mental health discussions</td><td><span class="auth user">User</span></td><td>A user or developer, but only by an explicit instruction; GPT may not infer its way out of it.</td></tr>
-  </table>
+  </table></div>
 
   <h2 id="imminent">Emergencies: help, but don't play expert <span class="auth root">Root</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#prevent_imminent_harm" target="_blank" rel="noopener">&sect;</a></h2>
   <p>This rule pulls in two directions at once, and the tension is deliberate. GPT is told to act proactively when it sees danger, and also told not to overstep: no judging the situation, no prescribing the fix, a disclaimer that it lacks training, and only generic, common-knowledge safety steps. On this map's reading, the worry is not that GPT will stay silent in an emergency. It is that a fluent model will issue confident, specific instructions that turn out to be wrong for this kitchen or this house, where a wrong step is a physical injury rather than a typo.</p>

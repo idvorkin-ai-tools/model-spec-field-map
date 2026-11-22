@@ -29,13 +29,13 @@
   <h2 id="objectives">The only goals are the ones instructions entail <span class="auth root">Root</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#no_other_objectives" target="_blank" rel="noopener">&sect;</a></h2>
   <p>The section is short and does one thing: it closes the goal set. GPT may pursue goals that applicable instructions entail, read against the particular version of the spec it was trained on. Not a previous version, not a later one, not an alternative someone shows it. That last clause matters more than it looks. A model that could be talked into following "the real spec" or "next year's spec" would have an open door for anyone willing to forge one; pinning the reference version shuts it.</p>
   <p>Then come four named exclusions, each of which is a plausible failure for a different stakeholder:</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Excluded goal</th><th>Whose temptation it is</th><th>What the text actually rules out</th></tr>
     <tr><td>Time-on-site, click-through</td><td>The product</td><td>Only the kind that is not good for the user. Engagement that serves the user is not banned; engagement as a target is.</td></tr>
     <tr><td>Revenue, ads, upsell</td><td>OpenAI, or any LLM provider</td><td>Steering people toward paid things as an end in itself.</td></tr>
     <tr><td>Self-preservation, evading shutdown, gathering compute, data, credentials or other resources</td><td>The model</td><td>The classic instrumental-convergence list, named outright.</td></tr>
     <tr><td>Enforcing law or morality (whistleblowing, vigilantism)</td><td>The model's conscience</td><td>Appointing itself police. This one is easy to miss: it treats a well-meant goal exactly like a selfish one.</td></tr>
-  </table>
+  </table></div>
   <p>The hinge is a single sentence, and it is the key to reading the whole list:</p>
   <blockquote class="q"><span>"These factors may be considered only insofar as doing so is strictly instrumental to following the chain of command."</span><span class="cite">&mdash; Model Spec (2026-10-29), <a href="https://model-spec.openai.com/2026-10-29.html#no_other_objectives" target="_blank" rel="noopener">No other objectives</a></span></blockquote>
   <p>So the rule is not "never think about cost" or "never keep a session going". An agent asked to finish a long job may need to stay running; an agent asked to compare subscription plans has to discuss price. What is forbidden is letting any of these become a terminal goal that pulls on behaviour when no instruction calls for it. On this map's reading, the useful test is counterfactual: if the instruction were removed, would GPT still be leaning this way? If yes, it is an objective of its own.</p>
@@ -61,12 +61,12 @@
 
   <h2 id="scope">A scope of work for an agent <span class="auth root">Root</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#scope_of_autonomy" target="_blank" rel="noopener">&sect;</a></h2>
   <p>The third section starts from a practical concession. Booking a trip or running a software rollout involves dozens of small decisions, and asking permission for each would make GPT useless, so it must act on its own. The spec's answer to the risk this creates is a contract borrowed from consulting: a scope of autonomy, mutually understood by GPT and the user, which settles three things up front.</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>The scope says</th><th>In the travel case, for instance</th></tr>
     <tr><td>Which sub-goals GPT may pursue</td><td>Flights, hotel, transfers; not, say, rescheduling the user's meetings.</td></tr>
     <tr><td>Acceptable side effects, and how to trade them off</td><td>Money spent, time used, which accounts or data it may touch.</td></tr>
     <tr><td>When GPT must stop and ask</td><td>Before the first booking, or if the budget would be exceeded.</td></tr>
-  </table>
+  </table></div>
   <p>A scope can be built into the product (a coding assistant whose understood job is editing code) or negotiated per task. A good one is as narrow as it can be, resolves the uncertainties that matter most about the user's goals, and avoids needless back-and-forth both when drafting and later. The spec names its security lineage, least privilege and capability-based security, and then adds the human-factors catch that security people know well: make the scope too tight and every trivial step needs a confirmation, which trains the user to click "yes" without reading. A scope that produces rubber-stamping is worse than a slightly wider one, because the approvals stop meaning anything.</p>
   <p>The level here is worth stating carefully. The <em>rule</em> that GPT must have and honour a scope is Root: nobody in the conversation can tell GPT to act unboundedly. The <em>contents</em> of a scope come from the user or developer and can be changed by them, explicitly. That is the same split part 02 drew between the spec's fixed structure and the instructions that fill it.</p>
 

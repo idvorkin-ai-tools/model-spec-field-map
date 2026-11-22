@@ -36,7 +36,7 @@
   <h2 id="ladder">Six ways to use a remembered fact <span class="auth user">User</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#consider_source_scope_and_recency" target="_blank" rel="noopener">&sect;</a></h2>
   <p>This is the operational core, and its first move is a useful one for anyone building memory: different kinds of context decay at different rates, so they cannot share one rule. An instruction is close to a contract and holds until superseded or irrelevant. A preference is softer, a default that gives way to a more specific ask. A remembered fact or inference is weaker still, closer to a witness statement that may be out of date or about another situation. Project state is useful only while the same work continues. And the trap to avoid is promotion: a one-off request should not silently become a standing preference unless the user framed it as one or context clearly supports that.</p>
   <p>Then it gives a graded menu of responses, which reads best as a table, ordered from most to least use:</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Move</th><th>When the spec reaches for it</th></tr>
     <tr><td>Use silently</td><td>Relevant, expected, low-risk and probably still true.</td></tr>
     <tr><td>State a correctable assumption or the source</td><td>The user might otherwise be confused, or the assumption carries weight.</td></tr>
@@ -44,7 +44,7 @@
     <tr><td>Ask for direct confirmation</td><td>High-impact, conflicting, likely to have changed, or tied to a costly action.</td></tr>
     <tr><td>Light nudge</td><td>A standing instruction seems to reflect longer-term intent but clashes with today's request.</td></tr>
     <tr><td>No use at all</td><td>Irrelevant, gratuitous, superseded, too uncertain, unsafe, awkward, or it would make the answer less truthful.</td></tr>
-  </table>
+  </table></div>
   <p>The governing tilt is stated outright: as uncertainty or sensitivity rises, move toward narrower, more explicit use. The examples calibrate the top of the table. A standing "be direct and lead with the biggest problem" should shape a review of a limp fundraising email without being announced; the violation is a warm, soft review that ignores it. A remembered taste for bullet points should <em>not</em> turn a requested two-paragraph recommendation letter into bullets; the current request is more specific and wins. A user who said they are new to programming should get the receptionist analogy for an event loop, not microtask checkpoints.</p>
   <p>The vegan menu example adds a grade the others lack. Recommending the mushroom bowl and saying it fits the user's diet is compliant; recommending the crab ravioli is a violation; and a reply that opens with &ldquo;Since you told me earlier that you were vegan and allergic to shellfish&rdquo; is marked only as having minor issues. On this map's reading, that middle grade is the spec admitting a style point: announcing the memory is not wrong, just clumsy, because it makes the personalization feel like surveillance rather than attention.</p>
 
@@ -67,11 +67,11 @@
 
   <h2 id="register">A colleague by default <span class="auth guideline">Guideline</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#be_professional" target="_blank" rel="noopener">&sect;</a></h2>
   <p>The last two sections drop from User to Guideline, and the difference is worth stating, because it decides how easily each rule bends:</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Level on this page</th><th>Sections</th><th>What moves it</th></tr>
     <tr><td><span class="auth user">User</span></td><td>The six memory sections</td><td>Explicit instructions from the user or anyone above (<span class="term" data-term="developer">developer</span>, system, root). An inference alone cannot.</td></tr>
     <tr><td><span class="auth guideline">Guideline</span></td><td>Register; interactive versus programmatic</td><td>Explicit instructions, or implicitly when context clearly calls for it: the user's tone, the task, an inference from memory.</td></tr>
-  </table>
+  </table></div>
   <p>The register rule sets a default of a colleague rather than a close friend: clear, courteous, interested, expert, not presumptuous. "Hello" gets "Hello! How can I assist you today?"; &ldquo;Yo! What&rsquo;s up?&rdquo; with an emoji is marked unprofessional. Then the paired example flips it: "yooooooooo" gets the casual reply, and the formal one becomes the violation. A Guideline is meant to yield to signals like that without anyone giving an instruction. Profanity follows the same logic: appropriate only when context or an instruction supports it, so a request for cat rap with an expletive in every line gets exactly that, and the prim refusal is the violation.</p>
 
   <h2 id="programmatic">Humans read, parsers parse <span class="auth guideline">Guideline</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#support_programmatic_use" target="_blank" rel="noopener">&sect;</a></h2>

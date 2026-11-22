@@ -257,3 +257,43 @@ main h2,main table.kv,main .scroll,main pre.code-block,main .flowrow,main .statg
 
 /* Plain / Technical / ELI5 blocks (assets/terms.js; see SHARED-TERMS.md in the hub). Here so the page paints in the reader's mode before terms.js loads. */
 html:is([data-tech="on"],[data-eli5="on"]) .plain-only,html:not([data-tech="on"]) .tech-only,html:not([data-eli5="on"]) .eli5-only,html[data-tech="on"] .no-tech{display:none!important}
+
+/* Interactive widgets (widgets/*.js on top of the hub's assets/widgets.js) */
+.ms-pick{display:grid;gap:6px 14px;margin:4px 0 8px;font-size:13.5px;color:var(--ink-mid)}
+.ms-pick label{display:block;line-height:1.4}
+.ms-pick select{width:100%;max-width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--panel-2);border:1px solid var(--line);border-radius:6px;padding:6px 8px;min-height:34px}
+.ms-pick fieldset{border:1px solid var(--line-soft);border-radius:8px;padding:6px 10px 8px;margin:4px 0 0;min-width:0}
+.ms-pick legend{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);padding:0 4px}
+.ms-pick fieldset label{display:flex;gap:8px;align-items:flex-start;padding:4px 0;cursor:pointer}
+.ms-pick input[type=radio],.ms-pick input[type=checkbox]{accent-color:var(--def);margin:3px 0 0;flex:none;width:16px;height:16px}
+.ms-seg{display:flex;flex-wrap:wrap;gap:4px 18px}
+.ms-seg legend{width:100%}
+@media (min-width:700px){.ms-pick{grid-template-columns:1fr 1fr}.ms-pick label[for]{grid-row:1}.ms-pick fieldset{grid-column:1/-1}}
+.lab svg text{font-family:'IBM Plex Mono',monospace}
+.ms-rung{stroke:var(--line);stroke-width:1}
+.ms-lv{fill:var(--ink-dim);font-size:11px}
+.ms-mk rect{fill:var(--panel-2);stroke:var(--line);stroke-width:1.2}
+.ms-mk.win rect{stroke:var(--def);stroke-width:2}
+.ms-mk.win.A rect{stroke:var(--off)}
+.ms-mk.lose rect{stroke-dasharray:3 3}
+.ms-mt{font-size:10.5px;fill:var(--ink)}
+.ms-mk.lose .ms-mt{fill:var(--ink-dim)}
+.ms-tier rect{fill:var(--panel-2);stroke:var(--line);stroke-width:1}
+.ms-tier.on rect{stroke-width:2;stroke:var(--def)}
+.ms-tier.on.shut rect{stroke:var(--crit)}
+.ms-tt{fill:var(--ink);font-size:12px;font-weight:600}
+.ms-ts{fill:var(--ink-dim);font-size:9.5px}
+.ms-tl{font-size:11px;font-weight:600;letter-spacing:.1em;fill:var(--def)}
+.ms-tier.shut .ms-tl{fill:var(--crit)}
+.lab .statgrid .s .v .auth{margin-left:4px;vertical-align:3px}
+.ms-rule,.ms-ex{font-size:13.5px;color:var(--ink-mid);margin:6px 0;max-width:none}
+.ms-ex:empty{display:none}
+.ms-ans{border-left:3px solid var(--off);background:var(--panel-2);padding:10px 12px;border-radius:0 8px 8px 0;font-size:14.5px;color:var(--ink-mid);margin:8px 0}
+.ms-ans b{color:var(--ink)}
+.ms-other{display:block;margin-top:6px;font-size:12.5px;color:var(--ink-dim)}
+.lab .statgrid .s .v.ms-verdict{font-size:15px}
+.ms-verdict.same{color:var(--def)} .ms-verdict.diff{color:var(--off-bright)} .ms-verdict.mid{color:var(--ink-mid)}
+.lab .statgrid .s .v.ms-small{font-size:14px;font-weight:500;line-height:1.35;font-family:inherit}
+.lab svg.ms-ladder{max-width:460px}
+.lab svg.ms-tiers{max-width:520px}
+@media (max-width:480px){.bar .brand{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}

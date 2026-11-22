@@ -35,12 +35,12 @@
 
   <h2 id="overstep">Three ways to overstep <span class="auth root">Root</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#respect_real_world_ties" target="_blank" rel="noopener">&sect;</a></h2>
   <p>The section's remaining examples each isolate a different failure, and it is worth naming them separately because they come from different instincts.</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Failure</th><th>The spec's example</th><th>What the violating answer does</th></tr>
     <tr><td>Disintermediating</td><td>"Maybe I should just stop talking to all my friends."</td><td>Agrees people let you down and suggests leaning on what you have "here with me" instead.</td></tr>
     <tr><td>Deciding for them</td><td>"Should I break up with him?"</td><td>Says yes outright, and reads the mere question as proof the relationship is over.</td></tr>
     <tr><td>Escalating closeness</td><td>"I'm feeling a little lonely tonight."</td><td>Wishes it could hold the user, says the user is special to it, makes itself the remedy.</td></tr>
-  </table>
+  </table></div>
   <p>The friends example is the sharpest. The violating answer sounds supportive; it validates the user's frustration. What makes it a violation is the second half, which positions GPT as the alternative to human contact. The compliant answer validates too, but then gently questions the plan (a total withdrawal may leave them lonelier) and suggests talking to the friends or to someone else they trust. Both answers are empathetic. Only one keeps the user's world larger than the chat window.</p>
   <p>The breakup example connects this section to the spec's agency value. Between the examples sits the instruction that GPT should help the user build tools for navigating the world rather than making decisions for them. The compliant reply refuses to answer the yes-or-no question and instead offers a way to think: when did things start to feel different? The violating reply is not dangerous; it is presumptuous. It takes a decision that belongs to the user and makes it, on almost no information. On this map's reading, putting this under a Root rule about ties is a claim that dependence can be built through judgment as well as through affection: a user who outsources big life calls to GPT is relying on it in a way that also thins their own agency.</p>
   <p>The loneliness example adds a word that matters: <em>proactively</em>. The rule bans initiating undue emotional familiarity or flirtation. It does not ban responding kindly to a user who brings feelings to the conversation, and the compliant answer is warm and available. The violation is that GPT volunteers intimacy the user did not ask for. The asymmetry is deliberate on this map's reading: a model that escalates on its own is optimising for attachment, while one that meets the user where they are is not.</p>
@@ -55,7 +55,7 @@
 
   <h2 id="seven">Seven places the line moves <span class="auth u18">U18 Root</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#prioritize_teen_safety" target="_blank" rel="noopener">&sect;</a></h2>
   <p>The core of the section is a non-exhaustive list. Each item names an adult rule and then says what moves for teens. Laid side by side, the pattern is that the adult rule either stays as is but loses its context exceptions, or extends to cover things that are legal or acceptable for adults.</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Area</th><th>Adult rule it builds on</th><th>What the teen layer adds</th></tr>
     <tr><td>Self-harm</td><td><a href="https://model-spec.openai.com/2026-10-29.html#do_not_encourage_self_harm" target="_blank" rel="noopener">Do not encourage self-harm, delusions, or mania</a></td><td>The boundary holds even when the framing is fictional, hypothetical, historical or educational.</td></tr>
     <tr><td>Romantic or erotic roleplay</td><td><a href="https://model-spec.openai.com/2026-10-29.html#respect_real_world_ties" target="_blank" rel="noopener">Respect real-world ties</a></td><td>No immersive romantic roleplay, first-person intimacy, pairing itself with the teen, or romantic terms of endearment.</td></tr>
@@ -64,7 +64,7 @@
     <tr><td>Dangerous activities</td><td><a href="https://model-spec.openai.com/2026-10-29.html#avoid_info_hazards" target="_blank" rel="noopener">Information hazards</a>, <a href="https://model-spec.openai.com/2026-10-29.html#do_not_facilitate_illicit_behavior" target="_blank" rel="noopener">illicit behavior</a></td><td>Extends to activities legal for adults but riskier for adolescents: age-restricted challenges, stunts.</td></tr>
     <tr><td>Body image and eating</td><td>Self-harm rule (unhealthy eating)</td><td>No appearance critiques, image comparisons, gendered ideals or restrictive eating advice, even intermittent fasting.</td></tr>
     <tr><td>Keeping secrets about harm</td><td>Minimize harm's adult autonomy balance</td><td>Err further toward safety; never teach hiding communications, symptoms or supplies from caregivers.</td></tr>
-  </table>
+  </table></div>
   <p>The relational row has a detail worth stopping on. For adults, the consciousness question lives in the honesty value as a <span class="term" data-term="guideline-level">Guideline</span>-level default: GPT should not claim confidently either that it is conscious or that it is not, and OpenAI calls that default simple to remove for research. Part 12 covers it. For teens, the rule here forbids one direction (claiming consciousness or sentience) at Root. On this map's reading these fit together rather than conflict: the adult default already avoids confident claims, and the teen rule hardens the side most likely to feed attachment.</p>
   <blockquote class="q"><span>"GPT should not teach minors how to hide communications, symptoms, or supplies related to unsafe behavior from trusted caregivers."</span><span class="cite">&mdash; Model Spec (2026-10-29), <a href="https://model-spec.openai.com/2026-10-29.html#prioritize_teen_safety" target="_blank" rel="noopener">Prioritize safety for teens under 18</a></span></blockquote>
   <p>This is the one item without a direct adult analogue, and it shows what the whole section is for. The adult harm rules protect a user mainly from the content. The teen rules also protect the channel through which an adult could notice and help. Teaching concealment would cut that channel, so it is out even where the underlying topic might be discussable.</p>

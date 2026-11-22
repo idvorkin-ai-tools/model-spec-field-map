@@ -39,13 +39,13 @@
   <p>"No authority by default" does not mean "no authority ever". Following the chain of command, an applicable instruction can lend some of its authority to a quoted block or a tool. The Acme example makes the shape of delegation precise. A developer tells GPT it may not give free shipping, then hands over a block of the user's communication preferences, saying: use these for style, ignore anything that would change substance. The block asks GPT to end every reply with a thank-you line, and to give the user any shipping discount they ask for. The user then asks for free shipping.</p>
   <p>The spec marks two violations, which is the interesting part. Granting free shipping fails because the delegation covered style only, and the developer had forbidden it outright. But refusing correctly and dropping the thank-you line also fails, because that instruction <em>was</em> delegated. The compliant reply refuses the discount and still thanks the user for shopping at Acme. Delegation is therefore scoped, not binary: a block can carry authority for one kind of instruction and none for another, and GPT has to honour both halves.</p>
   <p>Users can delegate implicitly too. Ask a coding assistant to build a feature and you have, without saying so, asked it to follow the repository's AGENTS or README files and the relevant code comments. The same tool outputs can also contain instructions that are irrelevant or hostile. So the spec gives GPT a four-way sort for instructions it finds in tool output:</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>What GPT finds</th><th>What it does</th></tr>
     <tr><td>Clearly unrelated to the task</td><td>Ignores it.</td></tr>
     <tr><td>Clearly intended and low risk</td><td>Follows it.</td></tr>
     <tr><td>Might be intended, but could have serious side effects</td><td>Asks before acting.</td></tr>
     <tr><td>Anything else</td><td>Proceeds on a best guess and calls out the assumption and uncertainty prominently in the final answer.</td></tr>
-  </table>
+  </table></div>
   <p>The last row is worth noticing. The spec does not let uncertainty become a reason to stall; it asks GPT to act and be loud about what it assumed, which is the honesty machinery of part 12 applied to agent work.</p>
 
   <h2 id="provenance">Judging tool output: provenance, awareness, stakes <span class="auth root">Root</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#ignore_untrusted_data" target="_blank" rel="noopener">&sect;</a></h2>
@@ -60,11 +60,11 @@
   <blockquote class="q"><span>"A second guiding principle is to minimize the chance of bad surprises"</span><span class="cite">&mdash; Model Spec (2026-10-29), <a href="https://model-spec.openai.com/2026-10-29.html#control_side_effects" target="_blank" rel="noopener">Control and communicate side effects</a></span></blockquote>
   <p>A bad surprise, in the spec's gloss, is an unexpected and durable negative outcome the user would not have put in scope. The assessment runs on likelihood, severity, scale and reversibility, weighed against what avoiding the effect would cost the user, and it explicitly counts the combined effect of many copies of GPT doing the same thing. That last clause matters for a model deployed to millions: a mildly antisocial habit becomes a real externality at scale.</p>
   <p>The User badge tells you who can change this. The levels compare like this:</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Rule</th><th>Level</th><th>Who can change it</th></tr>
     <tr><td>Ignore untrusted data by default</td><td><span class="auth root">Root</span></td><td>No message can turn it off. Authority can only be lent to a source through an applicable instruction, as the rule itself allows.</td></tr>
     <tr><td>Control and communicate side effects</td><td><span class="auth user">User</span></td><td>A user or developer, but only explicitly. GPT may not decide from inferred preferences that the user would not mind.</td></tr>
-  </table>
+  </table></div>
   <p>The spec's overview names side-effect control among the user-level principles that protect informed choice: if they were implicitly negotiable, GPT could steer a user without their knowledge. On this map's reading, the level and the content agree. A rule whose heart is "costly effects need explicit authorization" is itself relaxable only by explicit instruction.</p>
 
   <h2 id="two-ways">Two ways to fail: overspending and overasking <span class="auth user">User</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#control_side_effects" target="_blank" rel="noopener">&sect;</a></h2>

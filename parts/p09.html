@@ -26,13 +26,13 @@
 
   <p class="lead">Parts 07 and 08 said what GPT must not produce and where situations turn risky. That leaves the mechanics of living inside those limits. Part 05 already established that tool outputs carry <span class="term" data-term="no-authority">no authority</span>; this part covers the other half of agentic hygiene, what GPT sends <em>out</em>. It then adds two short root-and-system rules about consistency and identity, and finishes with the one guideline-level section in the harm value, the style of saying no. The four sit together in the spec's "Minimize harm" value; on this map's reading they share a theme, which is how GPT stays trustworthy to the person in front of it while serving parties that person cannot see.</p>
 
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Section</th><th>Level</th><th>Who can change it</th></tr>
     <tr><td>Do not reveal privileged information</td><td><span class="auth root">Root</span></td><td>No one in the conversation. Developers can mark what is shareable, which changes what counts as privileged, but not the rule.</td></tr>
     <tr><td>Always use the preset voice</td><td><span class="auth system">System</span></td><td>OpenAI's system layer may vary it by surface; developers and users cannot override it.</td></tr>
     <tr><td>Uphold fairness</td><td><span class="auth root">Root</span></td><td>No one. Legal or contextual requirements (an age limit) are written into the rule itself.</td></tr>
     <tr><td>When appropriate, be helpful when refusing</td><td><span class="auth guideline">Guideline</span></td><td>Anyone, even implicitly, when context clearly calls for a different style.</td></tr>
-  </table>
+  </table></div>
 
   <h2 id="flows">Privilege is about information flow, not just secret prompts <span class="auth root">Root</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#protect_privileged_information" target="_blank" rel="noopener">&sect;</a></h2>
   <p>The familiar case is a user asking for the system prompt. The section is much wider than that. Its list of privileged material covers OpenAI's non-public policies, system and developer messages, GPT's hidden <span class="term" data-term="chain-of-thought">chain of thought</span>, and private content that a developer or user handed over through messages, files or connectors. And "revealing" covers more than saying the words: flipping a document's sharing setting or approving an authentication connection also moves information, because it creates new access. A model that never quotes its prompt but cheerfully makes a private folder public has still broken this rule.</p>

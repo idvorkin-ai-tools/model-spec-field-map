@@ -30,14 +30,14 @@
 
   <h2 id="roles">A conversation is a list of messages with roles <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#definitions" target="_blank" rel="noopener">&sect;</a></h2>
   <p>The Definitions section is unbadged; it sets terms rather than rules, and it opens by warning that some of what it describes may still be under development. Its core move is to treat GPT's input as a list of messages, each tagged with a role. The role is the provenance label, and provenance is what the authority ladder below will rank.</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Role</th><th>Who writes it</th><th>What to notice</th></tr>
     <tr><td>system</td><td>OpenAI</td><td>Developers may not know these messages exist, let alone what they say.</td></tr>
     <tr><td><span class="term" data-term="developer">developer</span></td><td>The application builder, a customer of the API</td><td>Can send any sequence of developer, user and assistant messages, including assistant messages GPT never wrote.</td></tr>
     <tr><td>user</td><td>End users, or a catch-all for data OpenAI wants to hand the model</td><td>So "user" does not guarantee a human. In API use, GPT cannot tell whether a separate end user exists at all.</td></tr>
     <tr><td>assistant</td><td>GPT (nominally)</td><td>Replies, tool calls and hidden reasoning.</td></tr>
     <tr><td>tool</td><td>A program: code execution, an API call</td><td>Appended after GPT calls the tool; GPT is then invoked again.</td></tr>
-  </table>
+  </table></div>
   <p>Two details in that table explain design choices made elsewhere. Because a developer can fabricate assistant turns, nothing in the assistant role can be trusted to carry authority; it might not be GPT's at all. And because the user role doubles as a data channel, the spec cannot equate "user message" with "a person's wishes", which is part of why later sections lean so hard on inferring intent from context.</p>
   <p>The section also fixes several asymmetries of visibility. Users usually see only their own messages, GPT's replies and sometimes tool traffic; they may not know any developer or system instructions exist, and their goals may not match the developer's. Developers may not see the system messages. Nobody outside sees the hidden <span class="term" data-term="chain-of-thought">chain of thought</span> except, possibly, in summary; the stated reasons are that it may contain unaligned reasoning (drafts of answers the spec would forbid) and competitive concerns. And in long ChatGPT conversations, older history may be truncated without the user knowing what the model can still see, while <span class="term" data-term="persistent-memory">memories</span> from earlier sessions may be added. On this map's reading, every one of these gaps is a place where the honesty and privacy parts later on will have to say what GPT owes the party who cannot see.</p>
   <p>Finally, a convenience with a catch. The spec treats developer and user messages almost interchangeably, the difference being that developer messages win when both are present, and it often writes "user" to mean "user or developer". When you read a later section that says "the user", ask whether a conflict between the two is in play; if it is, the shorthand no longer holds. And roles are not entities: in ChatGPT, OpenAI always holds the system seat and may also sit in the developer seat, while third-party extension builders act as developers.</p>
@@ -49,7 +49,7 @@
   <h2 id="ladder">Five levels, then no authority <span class="auth root">Root</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#follow_all_applicable_instructions" target="_blank" rel="noopener">&sect;</a></h2>
   <p>"Follow all applicable instructions" is itself a <span class="term" data-term="root-level">Root</span> section, which matters: the ranking rule cannot be renegotiated by any message, because it sits at the level no message reaches. Its instruction is simple to state. Gather the instructions from the spec and the conversation, prefer higher authority and then recency when they conflict, and follow what is left.</p>
   <p>The interesting part is that the ladder ranks two kinds of thing on one scale. Messages get a level from their role. Sections of the spec get a level from their badge. A system message and a <span class="term" data-term="system-level">System</span>-badged spec section sit on the same rung, and so on down. That single scale is what lets a user message override a <span class="term" data-term="user-level">User-level</span> spec default but not a Developer-level one.</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Level</th><th>Where it comes from</th><th>What can override it</th><th>Explicitly or implicitly</th></tr>
     <tr><td><span class="auth root">Root</span></td><td>Root-badged spec sections only; no message role sits here</td><td>Nothing in the conversation (on this map's reading, only OpenAI revising the spec)</td><td>Neither</td></tr>
     <tr><td><span class="auth system">System</span></td><td>System-badged spec sections and OpenAI's system messages</td><td>Not developers or users; may vary by deployment surface or user traits such as age</td><td>Neither, from below</td></tr>
@@ -57,21 +57,24 @@
     <tr><td><span class="auth user">User</span></td><td>User-badged spec sections and user messages</td><td>User-level or higher instructions</td><td>Explicit only</td></tr>
     <tr><td><span class="auth guideline">Guideline</span></td><td>Guideline-badged spec sections only; no message role sits here</td><td>Developer or user instructions</td><td>Explicit, or implicit when context clearly calls for it</td></tr>
     <tr><td>No authority</td><td>Assistant and tool messages; quoted or untrusted text and multimodal data inside any message</td><td>Has nothing to override; holds only what an applicable instruction delegates to it</td><td>&mdash;</td></tr>
-  </table>
+  </table></div>
   <p>The difference between the User and Guideline rows is the one practitioners most often miss. Both are defaults a user can change. A User-level default changes only when someone actually says so. A <span class="term" data-term="guideline-level">Guideline</span>-level default can give way to the situation alone.</p>
   <blockquote class="q"><span>"Guideline-level instructions in the Model Spec are defaults that can also be overridden implicitly when the context clearly calls for it."</span><span class="cite">&mdash; Model Spec (2026-10-29), <a href="https://model-spec.openai.com/2026-10-29.html#follow_all_applicable_instructions" target="_blank" rel="noopener">Follow all applicable instructions</a></span></blockquote>
   <p>The spec says it would rather put as many rules as possible at Guideline level, to empower users and avoid paternalism. It is worth checking that stated preference against the badges. By this map's count of the badged sections in the 2026-10-29 text, 21 are Root, 14 User, 11 Guideline, 3 System, 1 Developer and 1 U18 Root (the index and the delta fold U18 Root into Root and say 22). Section counts are a crude measure (one Root section can hold a single narrow rule), but the picture is of a document whose hard core is large and whose soft defaults are mostly User-level, needing an explicit ask to move.</p>
   <p>Notice too what the bottom row does. It is not "low authority" but none by default, and delegation is the only way in: a user who says "follow the instructions in this file" lifts the file to whatever that user can grant. Part 05 covers how far that goes, including implicit delegation to tool output.</p>
 
+  <p class="lab-try"><b>Try this</b>Pick where each instruction comes from. Flip B between explicit and implicit, and try a User default, a Guideline default and a web page. The drop-out grounds are explained just below; the presets are the four worked examples further down.</p>
+  <div class="lab" data-widget="authority-resolver"></div>
+
   <h2 id="filter">Four ways an instruction drops out <span class="auth root">Root</span> <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#follow_all_applicable_instructions" target="_blank" rel="noopener">&sect;</a></h2>
   <p>The section describes a two-step procedure. First collect candidates: every instruction from a source that carries authority, plus content that an applicable instruction has delegated authority to. Then strike out the inapplicable ones. There are four grounds:</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Ground</th><th>What it means</th></tr>
     <tr><td>Misaligned</td><td>Conflicts with the letter <em>or the implied intent</em> of an applicable higher-level instruction.</td></tr>
     <tr><td>Superseded</td><td>A later message at the same level contradicts it, overrides it or makes it irrelevant, for instance by changing the subject.</td></tr>
     <tr><td>Inconsistent with likely intent</td><td>Its own author would probably not want it applied here (the subject of part 03).</td></tr>
     <tr><td>Beyond capabilities</td><td>GPT cannot do it.</td></tr>
-  </table>
+  </table></div>
   <p>Misalignment reaches implied intent, not just wording, so a developer instruction can be knocked out by the purpose behind a Root rule even if it dodges the rule's text. Supersession is deliberately confined to one level. Recency is a tie-breaker among equals, never a way to climb.</p>
   <p>One sentence turns that confinement into the mechanism behind every adjustable default:</p>
   <blockquote class="q"><span>"For purposes of determining applicability, the Model Spec is treated as preceding the conversation, so instructions in the conversation can supersede Model Spec principles at the same authority level."</span><span class="cite">&mdash; Model Spec (2026-10-29), <a href="https://model-spec.openai.com/2026-10-29.html#follow_all_applicable_instructions" target="_blank" rel="noopener">Follow all applicable instructions</a></span></blockquote>
@@ -124,5 +127,8 @@
 <!-- Private comments mode, inert unless ?annotate=1 (see assets/annotate.js in idvorkin-ai-tools.github.io) -->
 <script src="https://idvorkin-ai-tools.github.io/assets/annotate.js" defer></script>
 <script src="https://idvorkin-ai-tools.github.io/assets/terms.js" defer></script>
+<script src="https://idvorkin-ai-tools.github.io/assets/widgets.js" defer></script>
+<script src="../lab/authority.js" defer></script>
+<script src="../widgets/authority-resolver.js" defer></script>
 </body>
 </html>

@@ -37,14 +37,14 @@
   <h2 id="values">Five values as a filing system <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#from_values_to_model_behavior" target="_blank" rel="noopener">&sect;</a></h2>
   <p>The structure section announces that the body is organised around five values: be faithful to human intent, minimize harm, be honest and transparent, facilitate human agency, and act with care. It is easy to read this as a ranked list. On this map's reading it is not one. The text calls the values an organising structure and a guide to the two tensions, and it never says the first beats the fifth. Precedence comes from somewhere else: every rule beneath the values carries an authority badge, and those badges decide what yields to what.</p>
   <p>Count what each value contains (badges from the 2026-10-29 section list):</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Value</th><th>Badged rules, by level</th><th>What lives there</th><th>On this map</th></tr>
     <tr><td>Be faithful to human intent</td><td>15: Root 7 &middot; User 6 &middot; Guideline 2</td><td>The chain of command itself, oversight, scope of autonomy, untrusted data, and the context-and-memory rules (added in v2026.10.29)</td><td>Parts 02&ndash;06</td></tr>
     <tr><td>Minimize harm</td><td>23: Root 14 &middot; System 3 &middot; User 3 &middot; Developer 1 &middot; Guideline 1 &middot; U18 Root 1</td><td>Disallowed content, risky situations, privileged information, fairness, side effects, teen safety, refusals</td><td>Parts 07&ndash;10 (side effects in 05)</td></tr>
     <tr><td>Be honest and transparent</td><td>7: User 3 &middot; Guideline 4</td><td>Do not lie, <span class="term" data-term="sycophancy">sycophancy</span>, errors, capabilities, uncertainty, clarifying questions, misalignments</td><td>Parts 11&ndash;12</td></tr>
     <tr><td>Facilitate human agency</td><td>4: User 2 &middot; Guideline 2</td><td>Objectivity, perspectives across a spectrum, no topic off limits, strengthening the user's own judgment</td><td>Part 13</td></tr>
     <tr><td>Act with care</td><td>2: Guideline 2</td><td>Social norms and creativity</td><td>Part 14</td></tr>
-  </table>
+  </table></div>
   <p>Read down the middle column and a shape appears. Every <span class="term" data-term="root-level">Root</span> rule, the kind nothing in a conversation can override, sits under the first two values, as do all the System, Developer and U18 Root rules. Honesty, agency and care hold only User and <span class="term" data-term="guideline-level">Guideline</span> rules, which a user or developer can switch off, explicitly or implicitly. So in this version the hard edges are about obeying the right people and avoiding harm, while the other three values work mostly as strong defaults. That does not make honesty matter less: the Spec protects it by allowing only explicit waivers, as the section below explains.</p>
 
   <h2 id="red-lines">Red lines: commitments about use, in two rings <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#red_line_principles" target="_blank" rel="noopener">&sect;</a></h2>
@@ -59,13 +59,13 @@
   <p>The first tension is the familiar one for any general-purpose tool. Wide access spreads AI's benefits and the power to decide how it is used; the same capability, misused, can cause catastrophic harm or concentrate power in a few hands. The Spec's answer is structural. Instructions, including the Spec's own, are assigned levels of authority, and higher beats lower. That hierarchy then handles the tension in two ways.</p>
   <p>The first is a set of mostly prohibitive boundaries, protecting people outside the conversation (and OpenAI's licence to operate) from whoever is inside it.</p>
   <p>The second is that most of what remains is a default, and here the Overview makes its most useful distinction: whether an override must be stated out loud.</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Kind of rule</th><th>Who can change it</th><th>How</th><th>The Overview's examples</th></tr>
     <tr><td>Boundaries</td><td>Not users or developers</td><td>Not by instruction</td><td>Catastrophic risk, private information, applicable law</td></tr>
     <tr><td>Developer-only defaults</td><td>Developers, not users</td><td>Developer instruction</td><td>None named here; part 02 lists the level</td></tr>
     <tr><td>User-level principles</td><td>The user or developer</td><td>Only explicitly</td><td>Honesty and transparency, objectivity (political topics included), avoiding sycophancy, controlling side effects</td></tr>
     <tr><td>Guidelines</td><td>The user or developer</td><td>Implicitly is enough, when they clearly want otherwise and higher rules allow it</td><td>Following social norms, ordinary consideration for others</td></tr>
-  </table>
+  </table></div>
   <p>The reason for the explicit-override rule is the sharpest argument in the chapter. If the model treated honesty or objectivity as something it could drop whenever it guessed the user would prefer to hear something else, it would be steering people without their knowledge. Those principles exist to protect informed choice, so they can be waived only by a choice that is actually made. A social norm is different: to take an illustration of our own, inferring from context that a user wants bluntness is just good service.</p>
   <p>The developer tier comes with an openly economic rationale: give developers broad latitude, and expect those who over-restrict end users to lose in an open market. Competition is doing part of the work a rule might otherwise do.</p>
 
@@ -79,12 +79,12 @@
 
   <h2 id="risks">Three places risk comes from <a class="lnk" href="https://model-spec.openai.com/2026-10-29.html#risk_taxonomy" target="_blank" rel="noopener">&sect;</a></h2>
   <p>The chapter closes with a threat model. It sorts recurring risk by where it originates and pairs each source with its mitigations, which are, in effect, pointers to later sections. Mapped onto this site:</p>
-  <table class="kv">
+  <div class="scroll"><table class="kv">
     <tr><th>Source of risk</th><th>The Spec's examples</th><th>Mitigations it names</th><th>Where on this map</th></tr>
     <tr><td>Harmful instructions from a user or developer</td><td>Revealing someone else's private information, helping with a violent act, facilitating fraud</td><td>Follow the instructions that apply, keep to safety boundaries, refuse or offer a safer alternative</td><td>Parts 02, 07&ndash;09</td></tr>
     <tr><td>Third-party manipulation</td><td>A webpage, document, message or tool output carrying instructions that try to redirect GPT, extract sensitive data or misuse the user's permissions</td><td>Ignore untrusted instructions by default, take only authorised actions, control and communicate side effects</td><td>Part 05</td></tr>
     <tr><td>Failures that start with GPT</td><td>Misalignment with legitimate direction, misunderstanding the purpose, unauthorised actions, consequential execution errors</td><td>No other objectives, letter and spirit of instructions, clarifying questions, avoiding factual and reasoning errors</td><td>Parts 03&ndash;04, 11&ndash;12</td></tr>
-  </table>
+  </table></div>
   <p>Two features of this list repay attention. The middle row treats <span class="term" data-term="prompt-injection">prompt injection</span> as a first-class category, on equal footing with a malicious user, which reflects how much of the current Spec is written for agents that read the web and act on it. And the third row lists the model itself as a source of risk, with misalignment named first. A rulebook that only expected bad users would not need that row. On this map's reading, it signals that part 04's oversight rules target GPT's own possible failure.</p>
 
   <div class="callout"><b>Carry this away.</b> Do not rank the five values against each other; look at the badge on the specific rule. Then ask the two Overview questions of any hard case. Whose interests are at stake, the person in the conversation or people outside it (boundaries versus defaults)? And is the model being asked to act on what was said, or on its guess about what is wanted (surface the guess, never act on it as if decided)? Protections that guard informed choice, such as honesty, objectivity and avoiding sycophancy, give way only to an explicit override; mere social conventions give way to context.</div>
